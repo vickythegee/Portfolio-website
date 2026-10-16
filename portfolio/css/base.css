@@ -1,0 +1,87 @@
+/* =========================================================
+   BASE: reset, typography, accessibility helpers
+   WEEK 2 (selectors) + WEEK 5 (fluid type and images)
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height); /* stops sticky header covering section titles */
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  /* WEEK 5: clamp(min, preferred, max) makes text scale smoothly */
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.15rem);
+  line-height: 1.7;
+  color: var(--color-text);
+  background: var(--color-bg);
+  transition: background var(--transition), color var(--transition);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+  margin: 0 0 var(--space-3);
+}
+h1 { font-size: clamp(2.25rem, 1.4rem + 4.5vw, 4rem); }
+h2 { font-size: clamp(1.75rem, 1.3rem + 2vw, 2.5rem); }
+h3 { font-size: clamp(1.15rem, 1.05rem + 0.6vw, 1.45rem); }
+
+p { margin: 0 0 var(--space-3); }
+
+/* WEEK 5: fluid images never overflow their container */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+/* WEEK 2: ADVANCED SELECTORS ------------------------------ */
+
+/* Links with no class get default link styling (:not) */
+a:not([class]) {
+  color: var(--color-primary);
+}
+
+/* Attribute selector: add an arrow to links that open other websites */
+a[href^="http"]::after {
+  content: " \2197";
+  font-size: 0.85em;
+}
+
+/* Keyboard focus ring (pseudo-class :focus-visible) */
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--color-tint);
+  padding: 0.1em 0.4em;
+  border-radius: 0.3em;
+}
+
+/* WEEK 1: accessibility helper, visible only when focused */
+.skip-link {
+  position: absolute;
+  left: var(--space-3);
+  top: -4rem;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius);
+  z-index: 100;
+  transition: top var(--transition);
+}
+.skip-link:focus { top: var(--space-2); }

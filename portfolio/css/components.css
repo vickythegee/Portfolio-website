@@ -1,0 +1,266 @@
+/* =========================================================
+   COMPONENTS: reusable pieces named with BEM (Week 2)
+   Block        .card
+   Element      .card__title      (a part of the block)
+   Modifier     .card--featured   (a variation of the block)
+   ========================================================= */
+
+/* ---------- Logo ---------- */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 700;
+  color: var(--color-text);
+  text-decoration: none;
+}
+.logo__mark {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  font-size: 0.9rem;
+}
+
+/* ---------- Navigation links ---------- */
+.nav__link {
+  position: relative;
+  display: inline-block;
+  padding: var(--space-1) var(--space-2);
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+}
+/* underline drawn with ::after (animated in animations.css) */
+.nav__link::after {
+  content: "";
+  position: absolute;
+  left: var(--space-2);
+  right: var(--space-2);
+  bottom: 0;
+  height: 2px;
+  background: var(--color-primary);
+  transform: scaleX(0);
+}
+.nav__link:hover,
+.nav__link--active { color: var(--color-primary); }
+.nav__link:hover::after,
+.nav__link--active::after { transform: scaleX(1); }
+
+/* ---------- Theme toggle (shown in Week 10 when JS removes "hidden") ---------- */
+.theme-toggle {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 0.75em 1.6em;
+  border: 2px solid var(--color-primary);
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn--primary {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+}
+.btn--primary:hover { background: var(--color-primary-dark); border-color: var(--color-primary-dark); }
+.btn--ghost {
+  background: transparent;
+  color: var(--color-primary);
+}
+.btn--ghost:hover { background: var(--color-primary); color: var(--color-on-primary); }
+
+/* ---------- Section headings ---------- */
+.section__title {
+  position: relative;
+  padding-bottom: var(--space-2);
+}
+.section__title::after {
+  content: "";
+  display: block;
+  width: 4rem;
+  height: 4px;
+  margin-top: var(--space-2);
+  border-radius: 2px;
+  background: var(--color-accent);
+}
+.section__intro {
+  color: var(--color-muted);
+  max-width: 40rem;
+  margin-bottom: var(--space-5);
+}
+
+/* ---------- Hero parts ---------- */
+.hero__eyebrow {
+  margin: 0;
+  color: var(--color-accent);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.hero__subtitle { max-width: 34rem; font-size: 1.15em; color: var(--color-muted); }
+.hero__highlight { color: var(--color-primary); font-weight: 700; }
+.hero__avatar {
+  width: clamp(12rem, 40vw, 20rem);   /* WEEK 5: fluid size */
+  border-radius: 50%;
+  border: 6px solid var(--color-surface);
+  box-shadow: var(--shadow-hover);
+}
+
+/* ---------- About ---------- */
+.about__article,
+.about__aside {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  box-shadow: var(--shadow);
+}
+.facts__row dt { font-weight: 700; }
+.facts__row dd { margin: 0; color: var(--color-muted); text-align: right; }
+.facts__row:last-child { border-bottom: 0; }           /* :last-child */
+
+/* ---------- Skills ---------- */
+.skill {
+  --level: 50%;                  /* WEEK 2: default, overridden per item in the HTML */
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-3) var(--space-4);
+}
+.skill__head { display: flex; justify-content: space-between; font-weight: 600; margin-bottom: var(--space-2); }
+.skill__value { color: var(--color-muted); }
+.skill__bar {
+  height: 0.6rem;
+  border-radius: 999px;
+  background: var(--color-tint);
+  overflow: hidden;
+}
+.skill__fill {
+  display: block;
+  height: 100%;
+  width: var(--level);
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+}
+
+/* ---------- Cards ---------- */
+.card {
+  --card-accent: var(--color-primary);   /* scoped variable, changed by the modifier below */
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-top: 4px solid var(--card-accent);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.card--featured { --card-accent: var(--color-accent); }
+.card__media { overflow: hidden; aspect-ratio: 16 / 10; background: var(--color-tint); }
+.card__media img { width: 100%; height: 100%; object-fit: cover; }
+.card__body { padding: var(--space-4); }
+.card__title { margin: 0; }
+.card__text { margin: 0; color: var(--color-muted); }
+.card__tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.card__link { font-weight: 600; color: var(--card-accent); }
+.card--featured .card__link { color: var(--color-accent); }
+
+.tag {
+  font-size: 0.8rem;
+  padding: 0.15em 0.75em;
+  border-radius: 999px;
+  background: var(--color-tint);
+  border: 1px solid var(--color-border);
+  color: var(--color-muted);
+}
+
+/* ---------- Timeline ---------- */
+.timeline__item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 6px solid var(--color-primary);
+  border-radius: var(--radius);
+  padding: var(--space-3) var(--space-4);
+}
+.timeline__item:nth-child(even) { border-left-color: var(--color-accent); }   /* :nth-child */
+.timeline__item--upcoming {
+  border-left-style: dashed;
+  border-left-color: var(--color-border);
+  opacity: 0.75;
+}
+.timeline__week {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+.timeline__title { margin: var(--space-1) 0 var(--space-2); }
+.timeline__text { margin: 0; color: var(--color-muted); }
+.timeline__item--upcoming .timeline__text::before { content: "⏳ "; }
+
+/* ---------- Contact form ---------- */
+.form__label { font-weight: 600; }
+.form__input {
+  width: 100%;
+  padding: 0.7em 0.9em;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+}
+.form__input--textarea { resize: vertical; min-height: 8rem; }
+.form__input:focus { border-color: var(--color-primary); outline: none; }
+.form__field:focus-within .form__label { color: var(--color-primary); }  /* :focus-within */
+
+/* Only mark a field invalid after the user has typed something (:placeholder-shown) */
+.form__input:invalid:not(:placeholder-shown) { border-color: var(--color-error); }
+.form__input:valid:not(:placeholder-shown) { border-color: #15803d; }
+.form__error { margin: 0; min-height: 1.2em; color: var(--color-error); font-size: 0.9rem; }
+
+/* ---------- Footer ---------- */
+.social__link { color: var(--color-primary); font-weight: 600; }
+
+/* ---------- 3D flip card (Week 6) ---------- */
+.flip {
+  perspective: 800px;
+  height: 7rem;
+  cursor: pointer;
+}
+.flip__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+.flip__face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: var(--space-3);
+  text-align: center;
+  border-radius: var(--radius);
+  font-weight: 600;
+  backface-visibility: hidden;
+}
+.flip__face--front { background: var(--color-primary); color: var(--color-on-primary); }
+.flip__face--back {
+  background: var(--color-accent);
+  color: #ffffff;
+  transform: rotateY(180deg);
+}
+[data-theme="dark"] .flip__face--back { color: #12131c; }

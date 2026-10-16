@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- WEEK 5: this viewport tag is what makes mobile-first design work -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Name | Portfolio</title>
+  <meta name="description" content="Portfolio of Your Name, an IT student at Wisconsin International University College, Ghana.">
+
+  <!-- WEEK 2: CSS is split into small files, each with ONE job.
+       Order matters: variables first, responsive last. -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Loaded with "defer" so the HTML is read first. Used from Week 8 onward. -->
+  <script src="js/script.js" defer></script>
+</head>
+
+<body>
+  <!-- WEEK 1: accessibility. Lets keyboard users jump past the menu. -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ===================== HEADER + NAVIGATION ===================== -->
+  <!-- WEEK 1: <header> is the "banner" landmark.
+       WEEK 3: Flexbox navigation bar (see .site-header__inner and .nav__list in layout.css) -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="logo" href="#home" aria-label="Your Name, back to top">
+        <span class="logo__mark" aria-hidden="true">YN</span>
+        <span class="logo__text">Your Name</span>
+      </a>
+
+      <!-- WEEK 12 TODO: add a hamburger <button> here that toggles the menu on phones -->
+      <nav class="nav" aria-label="Main navigation">
+        <ul class="nav__list">
+          <li><a class="nav__link nav__link--active" href="#home" aria-current="page">Home</a></li>
+          <li><a class="nav__link" href="#about">About</a></li>
+          <li><a class="nav__link" href="#skills">Skills</a></li>
+          <li><a class="nav__link" href="#projects">Projects</a></li>
+          <li><a class="nav__link" href="#journey">Journey</a></li>
+          <li><a class="nav__link" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- WEEK 10 TODO: JavaScript will switch the theme by setting data-theme="dark" on <html>.
+           The dark colours already exist in css/variables.css -->
+      <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch colour theme" hidden>
+        <span aria-hidden="true">🌓</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- WEEK 1: only ONE <main> per page. It is the "main" landmark. -->
+  <main id="main">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <p class="hero__eyebrow">Hello, I'm</p>
+          <h1 class="hero__title" id="hero-title">Your Name</h1>
+          <p class="hero__subtitle">IT student &amp; aspiring <span class="hero__highlight">front-end developer</span> building clean, accessible and responsive websites.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#projects">View my work</a>
+            <a class="btn btn--ghost" href="#contact">Get in touch</a>
+          </div>
+        </div>
+
+        <!-- WEEK 1: <figure> + alt text. WEEK 5: fluid image. WEEK 6: floating animation -->
+        <figure class="hero__figure">
+          <img class="hero__avatar" src="images/avatar.svg" width="320" height="320"
+               alt="Illustrated placeholder portrait of Your Name. Replace with your own photo.">
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <h2 class="section__title" id="about-title">About me</h2>
+
+        <div class="about">
+          <!-- WEEK 1: <article> = self-contained content -->
+          <article class="about__article">
+            <h3 class="about__heading">Who I am</h3>
+            <p>I am a student at <strong>Wisconsin International University College, Ghana</strong>, studying in the School of Computing and Technology. I enjoy turning ideas into websites that look good on every screen.</p>
+            <p>This portfolio is my learning project for <em>ITW 205: Advance Website Programming</em>. It grows every week as I learn something new.</p>
+            <p>Edit this text and tell your own story: where you are from, what you study and what you want to build.</p>
+          </article>
+
+          <!-- WEEK 1: <aside> = side information related to the main content -->
+          <aside class="about__aside" aria-label="Quick facts">
+            <h3 class="about__heading">Quick facts</h3>
+            <dl class="facts">
+              <div class="facts__row"><dt>Location</dt><dd>Ghana</dd></div>
+              <div class="facts__row"><dt>Studying</dt><dd>BSc Information Technology</dd></div>
+              <div class="facts__row"><dt>Focus</dt><dd>HTML, CSS &amp; JavaScript</dd></div>
+              <div class="facts__row"><dt>Status</dt><dd>Open to internships</dd></div>
+            </dl>
+
+            <!-- WEEK 6: 3D flip card (rotateY). Works on hover AND keyboard focus. -->
+            <div class="flip" tabindex="0" aria-label="Fun fact card. Hover or focus to flip.">
+              <div class="flip__inner">
+                <div class="flip__face flip__face--front">Fun fact? ✨</div>
+                <div class="flip__face flip__face--back">Write a fun fact about yourself here.</div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SKILLS ===================== -->
+    <section class="section section--tinted" id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <h2 class="section__title" id="skills-title">Skills</h2>
+        <p class="section__intro">What I can do so far. Each bar is controlled by one CSS variable, <code>--level</code>.</p>
+
+        <!-- WEEK 4: auto-fit Grid. WEEK 2: --level is a custom property scoped to each item. -->
+        <ul class="skills">
+          <li class="skill" style="--level: 85%">
+            <div class="skill__head"><span class="skill__name">HTML5</span><span class="skill__value">85%</span></div>
+            <div class="skill__bar" role="img" aria-label="HTML5 skill level 85 percent"><span class="skill__fill"></span></div>
+          </li>
+          <li class="skill" style="--level: 80%">
+            <div class="skill__head"><span class="skill__name">CSS3</span><span class="skill__value">80%</span></div>
+            <div class="skill__bar" role="img" aria-label="CSS3 skill level 80 percent"><span class="skill__fill"></span></div>
+          </li>
+          <li class="skill" style="--level: 75%">
+            <div class="skill__head"><span class="skill__name">Flexbox &amp; Grid</span><span class="skill__value">75%</span></div>
+            <div class="skill__bar" role="img" aria-label="Flexbox and Grid skill level 75 percent"><span class="skill__fill"></span></div>
+          </li>
+          <li class="skill" style="--level: 70%">
+            <div class="skill__head"><span class="skill__name">Responsive design</span><span class="skill__value">70%</span></div>
+            <div class="skill__bar" role="img" aria-label="Responsive design skill level 70 percent"><span class="skill__fill"></span></div>
+          </li>
+          <li class="skill" style="--level: 15%">
+            <div class="skill__head"><span class="skill__name">JavaScript</span><span class="skill__value">15%</span></div>
+            <div class="skill__bar" role="img" aria-label="JavaScript skill level 15 percent, just starting"><span class="skill__fill"></span></div>
+          </li>
+          <li class="skill" style="--level: 40%">
+            <div class="skill__head"><span class="skill__name">Git &amp; GitHub</span><span class="skill__value">40%</span></div>
+            <div class="skill__bar" role="img" aria-label="Git and GitHub skill level 40 percent"><span class="skill__fill"></span></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== PROJECTS ===================== -->
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="container">
+        <h2 class="section__title" id="projects-title">Projects</h2>
+        <p class="section__intro">A few things I have built. Replace these placeholders with your real work.</p>
+
+        <!-- WEEK 3 + 4: cards are Grid items, and each card is a Flexbox column inside. -->
+        <div class="projects">
+          <!-- WEEK 2: BEM modifier .card--featured changes the accent colour and spans 2 columns -->
+          <article class="card card--featured">
+            <div class="card__media">
+              <img src="images/project-1.svg" width="640" height="400" loading="lazy"
+                   alt="Placeholder preview of the featured project: this portfolio website">
+            </div>
+            <div class="card__body">
+              <h3 class="card__title">This Portfolio</h3>
+              <p class="card__text">A responsive, accessible portfolio built with semantic HTML5 and modern CSS. It will gain JavaScript features throughout the semester.</p>
+              <ul class="card__tags" aria-label="Technologies used">
+                <li class="tag">HTML5</li><li class="tag">CSS Grid</li><li class="tag">Flexbox</li>
+              </ul>
+              <a class="card__link" href="#journey">See how it was built</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__media">
+              <img src="images/project-2.svg" width="640" height="400" loading="lazy"
+                   alt="Placeholder preview of project two: a landing page">
+            </div>
+            <div class="card__body">
+              <h3 class="card__title">Landing Page</h3>
+              <p class="card__text">Mobile-first landing page for a fictional business, using media queries and fluid typography.</p>
+              <ul class="card__tags" aria-label="Technologies used">
+                <li class="tag">HTML5</li><li class="tag">Media queries</li>
+              </ul>
+              <a class="card__link" href="https://github.com/" target="_blank" rel="noopener">View on GitHub</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__media">
+              <img src="images/project-3.svg" width="640" height="400" loading="lazy"
+                   alt="Placeholder preview of project three: an animated card gallery">
+            </div>
+            <div class="card__body">
+              <h3 class="card__title">Animated Gallery</h3>
+              <p class="card__text">A gallery that uses transitions, transforms and keyframe animations for smooth hover effects.</p>
+              <ul class="card__tags" aria-label="Technologies used">
+                <li class="tag">CSS animations</li><li class="tag">Transforms</li>
+              </ul>
+              <a class="card__link" href="https://github.com/" target="_blank" rel="noopener">View on GitHub</a>
+            </div>
+          </article>
+        </div>
+        <!-- WEEK 12 TODO: build these cards from a JavaScript array with createElement() -->
+      </div>
+    </section>
+
+    <!-- ===================== JOURNEY (course map) ===================== -->
+    <section class="section section--tinted" id="journey" aria-labelledby="journey-title">
+      <div class="container">
+        <h2 class="section__title" id="journey-title">My learning journey</h2>
+        <p class="section__intro">ITW 205: what I learned each week and where it appears on this page.</p>
+
+        <ol class="timeline">
+          <li class="timeline__item">
+            <span class="timeline__week">Week 1</span>
+            <h3 class="timeline__title">Advanced HTML5 Semantics</h3>
+            <p class="timeline__text"><code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code>, ARIA labels and descriptive alt text.</p>
+          </li>
+          <li class="timeline__item">
+            <span class="timeline__week">Week 2</span>
+            <h3 class="timeline__title">CSS Architecture &amp; Custom Properties</h3>
+            <p class="timeline__text">Separate stylesheets, BEM naming (<code>.card__title--featured</code> style), CSS variables, dark theme variables, advanced selectors and pseudo-classes.</p>
+          </li>
+          <li class="timeline__item">
+            <span class="timeline__week">Week 3</span>
+            <h3 class="timeline__title">Flexbox</h3>
+            <p class="timeline__text">The navigation bar, buttons, tags, card contents and the footer.</p>
+          </li>
+          <li class="timeline__item">
+            <span class="timeline__week">Week 4</span>
+            <h3 class="timeline__title">CSS Grid</h3>
+            <p class="timeline__text">Skills, projects and timeline layouts using <code>fr</code>, <code>repeat()</code>, <code>auto-fit</code> and <code>grid-column</code>.</p>
+          </li>
+          <li class="timeline__item">
+            <span class="timeline__week">Week 5</span>
+            <h3 class="timeline__title">Responsive Web Design</h3>
+            <p class="timeline__text">Mobile-first CSS, media queries in <code>responsive.css</code>, <code>clamp()</code> typography and fluid images.</p>
+          </li>
+          <li class="timeline__item">
+            <span class="timeline__week">Week 6</span>
+            <h3 class="timeline__title">Transitions, Transforms &amp; Animations</h3>
+            <p class="timeline__text">Hover transitions, floating avatar, fade-in hero, 3D flip card and animated skill bars.</p>
+          </li>
+
+          <!-- Upcoming weeks: replace the --upcoming modifier when you finish each one -->
+          <li class="timeline__item timeline__item--upcoming">
+            <span class="timeline__week">Week 8–9</span>
+            <h3 class="timeline__title">JavaScript basics &amp; control flow</h3>
+            <p class="timeline__text">Coming soon.</p>
+          </li>
+          <li class="timeline__item timeline__item--upcoming">
+            <span class="timeline__week">Week 10–11</span>
+            <h3 class="timeline__title">DOM &amp; Events</h3>
+            <p class="timeline__text">Coming soon.</p>
+          </li>
+          <li class="timeline__item timeline__item--upcoming">
+            <span class="timeline__week">Week 12–13</span>
+            <h3 class="timeline__title">Dynamic UI, forms &amp; APIs</h3>
+            <p class="timeline__text">Coming soon.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <h2 class="section__title" id="contact-title">Contact me</h2>
+        <p class="section__intro">Have a question or an opportunity? Send me a message.</p>
+
+        <!-- WEEK 13 TODO: validate this form with JavaScript before it submits.
+             For now the browser's built-in validation (required, type="email") is used. -->
+        <form class="form" id="contact-form" action="#" method="post">
+          <div class="form__field">
+            <label class="form__label" for="name">Name</label>
+            <input class="form__input" type="text" id="name" name="name" placeholder="Your full name" autocomplete="name" required>
+            <p class="form__error" id="name-error" aria-live="polite"></p>
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="email">Email</label>
+            <input class="form__input" type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+            <p class="form__error" id="email-error" aria-live="polite"></p>
+          </div>
+          <div class="form__field form__field--full">
+            <label class="form__label" for="message">Message</label>
+            <textarea class="form__input form__input--textarea" id="message" name="message" rows="5" placeholder="How can I help?" required></textarea>
+            <p class="form__error" id="message-error" aria-live="polite"></p>
+          </div>
+          <div class="form__field form__field--full">
+            <button class="btn btn--primary" type="submit">Send message</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <!-- WEEK 1: <footer> is the "contentinfo" landmark -->
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p class="site-footer__copy">&copy; <span id="year">2026</span> Your Name. Built for ITW 205.</p>
+      <nav aria-label="Social links">
+        <ul class="social">
+          <li><a class="social__link" href="https://github.com/" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a class="social__link" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a class="social__link" href="mailto:you@example.com">Email</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

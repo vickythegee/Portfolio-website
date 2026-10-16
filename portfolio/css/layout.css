@@ -1,0 +1,142 @@
+/* =========================================================
+   LAYOUT: where things go on the page
+   WEEK 3 = Flexbox   WEEK 4 = Grid   (mobile-first: phone layout here,
+   bigger screens are added in responsive.css)
+   ========================================================= */
+
+.container {
+  width: min(100% - 2rem, var(--max-width));
+  margin-inline: auto;
+}
+
+.section { padding-block: var(--space-6); }
+.section--tinted { background: var(--color-tint); }
+
+/* ---------- HEADER + NAV (WEEK 3: Flexbox) ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow);
+}
+
+.site-header__inner {
+  display: flex;
+  flex-wrap: wrap;                 /* on phones the nav drops under the logo */
+  align-items: center;             /* cross-axis alignment */
+  justify-content: space-between;  /* main-axis alignment */
+  gap: var(--space-2) var(--space-4);
+  padding-block: var(--space-2);
+}
+
+.nav { flex: 1 1 auto; }
+
+.nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-1) var(--space-3);
+}
+
+/* ---------- HERO (WEEK 4: Grid) ---------- */
+.hero {
+  padding-block: var(--space-6);
+  background:
+    radial-gradient(circle at 85% 10%, color-mix(in srgb, var(--color-primary) 18%, transparent), transparent 55%),
+    var(--color-bg);
+}
+
+.hero__inner {
+  display: grid;
+  gap: var(--space-5);
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+/* ---------- ABOUT (WEEK 4: Grid + Flexbox together) ---------- */
+.about {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.facts {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 var(--space-4);
+}
+.facts__row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-block: var(--space-2);
+  border-bottom: 1px dashed var(--color-border);
+}
+
+/* ---------- SKILLS (WEEK 4: auto-fit grid) ---------- */
+.skills {
+  display: grid;
+  gap: var(--space-4);
+  /* Makes as many columns as fit, each at least 15rem wide */
+  grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
+}
+
+/* ---------- PROJECTS (WEEK 4: Grid) ---------- */
+.projects {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: 1fr; /* one column on phones */
+}
+
+/* Cards: Flexbox INSIDE a Grid cell */
+.card {
+  display: flex;
+  flex-direction: column;
+}
+.card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;                   /* body stretches so link sits at the bottom */
+  gap: var(--space-2);
+}
+.card__link { margin-top: auto; }
+
+/* ---------- TIMELINE (WEEK 4: Grid) ---------- */
+.timeline {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: 1fr;
+}
+
+/* ---------- CONTACT FORM (WEEK 4: Grid) ---------- */
+.form {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: 1fr;
+  max-width: 44rem;
+}
+.form__field { display: flex; flex-direction: column; gap: var(--space-1); }
+
+/* ---------- FOOTER (WEEK 3: Flexbox) ---------- */
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  padding-block: var(--space-4);
+  background: var(--color-surface);
+}
+.site-footer__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+}
+.site-footer__copy { margin: 0; }
+.social { display: flex; gap: var(--space-3); }
